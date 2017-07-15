@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+  <script src="main.js"></script>
+  <meta charset="utf-8">
+  <title>Card Demo</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body ng-app="myCards">
+  <h1>Using ng-transclude directive</h1>
+
+  <br>
+  <br>
+  <br>
+  
+  <my-card my-title="'Ilfracombe'"
+           my-pic="'http://teropa.info/ilfracombe.jpg'">
+    <p>Ilfracombe /ˈɪlfrəkuːm/ is a seaside resort and civil parish on the North Devon coast, England with a small harbour, surrounded by cliffs.</p>
+    <p>The parish stretches along the coast from 'The Coastguard Cottages' in Hele Bay toward the east and 4 miles along The Torrs to Lee Bay toward the west. The resort is hilly and the highest point within the parish boundary is at 'Hore Down Gate', 2 miles inland and 860 feet (270 m) above sea level.</p>
+  </my-card>
+  
+  <script type="text/ng-template" id="myCard">
+    <article>
+      <img class="pic" ng-src="{{ctrl.pic}}">
+      <h2>{{ctrl.title}}</h2>
+      <div ng-transclude></div>
+    </article>
+  </script>
+</body>
+
+</html>
