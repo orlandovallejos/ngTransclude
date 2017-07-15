@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
   <script src="main.js"></script>
   <meta charset="utf-8">
   <title>Card Demo</title>
-
-  <style>
-    my-card {
-      display: block;
-      border: 1px solid #555;
-      padding: 5px;
-    }
-
-    my-card .pic {
-      float: right;
-      max-width: 100px;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body ng-app="myCards">
+  <h1>Simple directive</h1>
+  <p>This is a basic directive. There's no transclusion here.</p>
+  <p>The problem here is we can't have paragraphs and the content looks too ugly. We can't format it.</p>
+  
+  <br>
+  <br>
+  <br>
+
   <my-card my-title="'Ilfracombe'" my-pic="'http://teropa.info/ilfracombe.jpg'" my-content="Ilfracombe /ˈɪlfrəkuːm/ is a seaside resort and civil parish on the North Devon coast, England with a small harbour, surrounded by cliffs. The parish stretches along the coast from 'The Coastguard Cottages' in Hele Bay toward the east and 4 miles along The Torrs to Lee Bay toward the west. The resort is hilly and the highest point within the parish boundary is at 'Hore Down Gate', 2 miles inland and 860 feet (270 m) above sea level.">
   </my-card>
 
@@ -32,6 +29,6 @@
       {{content}}
     </article>
   </script>
-
 </body>
+
 </html>
