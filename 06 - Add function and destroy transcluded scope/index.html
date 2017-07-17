@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+  <script src="main.js"></script>
+  <meta charset="utf-8">
+  <title>Card Demo</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body ng-app="myCards">
+  <h1>Add function inside directive and destroy transcluded scope</h1>
+  <h2>Managing Transclusion Scope Lifecycle</h2>
+  <p>Every time we call the transclusion function, a transclusion scope is created for us. But when we empty the transcluded
+    content, Angular has no way of knowing it should now destroy that transclusion scope, so it doesn't.</p>
+  <p>We need to take responsibility of destroying that transclusion scope. We're able to do that because the transclusion function
+    gives that scope to us as the second argument of the clone attach function. If we just hold on to it, we can call $destroy()
+    on it later.</p>
+  <br>
+  <br>
+
+  <h2>Attaching Custom Data on Transclusion Scopes</h2>
+  <p>There is one more reason you might want to use the clone attach function: It gets called at a specific point in time, which
+    is after the transclusion scope has been created but before the transclusion is linked. This means you can put things
+    on the transclusion scope, and they will be available inside the transcluded content.</p>
+  <p>For example, the myCard directive could provide the "collapse" feature as a function on the transclusion scope. If you
+    then wanted to embed a collapse button somewhere inside the transcluded content, you could do that very easily:</p>
+  <br>
+  <br>
+  <br>
+
+  <my-card my-title="'Ilfracombe'" my-pic="'http://teropa.info/ilfracombe.jpg'">
+    <p>Ilfracombe /ˈɪlfrəkuːm/ is a seaside resort and civil parish on the North Devon coast, England with a small harbour,
+      surrounded by cliffs.</p>
+    <p>The parish stretches along the coast from \'The Coastguard Cottages\' in Hele Bay toward the east and 4 miles along The
+      Torrs to Lee Bay toward the west. The resort is hilly and the highest point within the parish boundary is at \'Hore
+      Down Gate\', 2 miles inland and 860 feet (270 m) above sea level.</p>
+    <button ng-click="myCardCollapse()">Hide</button>
+  </my-card>
+
+  <script type="text/ng-template" id="myCard">
+    <article>
+      <figure ng-show="ctrl.expanded">
+        <img class="pic" ng-src="{{ctrl.pic}}">
+      </figure>
+      <h2>
+        <button ng-if="!ctrl.expanded" ng-click="ctrl.expand()">
+          &#9656;
+        </button>
+        <button ng-if="ctrl.expanded" ng-click="ctrl.collapse()">
+          &#9662;
+        </button> {{ctrl.title}}
+      </h2>
+      <div class="content"></div>
+    </article>
+  </script>
+</body>
+
+</html>
